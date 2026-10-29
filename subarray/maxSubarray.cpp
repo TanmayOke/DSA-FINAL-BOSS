@@ -1,4 +1,8 @@
-int maxSubArray(vector<int>& nums) {
+#include<iostream>
+#include<vector>
+#include<climits>
+
+int maxSubArray(vector<int> &nums) {
         int maxSum=INT_MIN;
         int prefix=0;
         int n= nums.size();
@@ -12,3 +16,25 @@ int maxSubArray(vector<int>& nums) {
         }
         return maxSum;
     }
+
+  int maxSubarraySum(vector<int> &arr, int k) {
+        // code here
+        int sum=0,res=0;
+        int low=0,high=k-1;
+        //For First Window
+        for(int i =low;i<=high;i++){
+            sum=sum+arr[i];
+        }
+        
+        while(high<arr.size()){
+            res=max(sum,res);
+            low++;
+            high++;
+            if(high==arr.size()){
+                break;
+            }
+            sum=sum-arr[low-1];
+            sum=sum+arr[high];
+        }
+        return res;
+    }    

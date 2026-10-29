@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 
@@ -92,6 +93,23 @@ string defangIPaddr(string address) {
         }
         int ans=count +odd;
     return ans;
+    }
+
+    //longest substring without repeating characters
+       int lengthOfLongestSubstring(string s) {
+        vector<bool> count(256,0);
+        int first=0,second=0,len=0;
+        while(second<s.length()){
+            while(count[s[second]]){
+                count[s[first]]=0;
+                first++;
+            }
+        count[s[second]]=1;
+        len=max(len,second-first+1);
+        second++;
+
+        }
+        return len;
     }
 int main(){
     string str="Tanmay";
